@@ -95,6 +95,25 @@ describe('Vector2.js', () => {
     expect(b.column(1)).toStrictEqual([2, 4, 6, 8]);
   });
 
+  it('swapRows', () => {
+    const a = Matrix.identity(3).swapRows(0, 1);
+    const b = new Matrix([[0, 1, 0], [1, 0, 0], [0, 0, 1]]);
+    expect(a.equal(b)).toBeTruthy();
+
+    const c = new Matrix([[1, 2], [3, 4], [5, 6], [7, 8]]).swapRows(1, 2);
+    const d = new Matrix([[1, 2], [5, 6], [3, 4], [7, 8]]);
+    expect(c.equal(d)).toBeTruthy();
+  });
+
+  it('swapColumns', () => {
+    const a = Matrix.identity(3).swapColumns(0, 2);
+    const b = new Matrix([[0, 0, 1], [0, 1, 0], [1, 0, 0]]);
+    expect(a.equal(b)).toBeTruthy();
+
+    const c = new Matrix([[1, 2], [3, 4], [5, 6], [7, 8]]).swapColumns(0, 1);
+    const d = new Matrix([[2, 1], [4, 3], [6, 5], [8, 7]]);
+    expect(c.equal(d)).toBeTruthy();
+  });
 
   it('equal', () => {
     const a = new Matrix([[1, 2, 3], [4, 5, 6]]);

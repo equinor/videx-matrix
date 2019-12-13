@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;functions&quot; | @equinor/videx-vector2</title>
+	<title>&quot;functions&quot; | @equinor/videx-matrix</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@equinor/videx-vector2</a>
+					<a href="../index.html" class="title">@equinor/videx-matrix</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -70,339 +70,85 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-private"><a href="_functions_.html#angleright" class="tsd-kind-icon">angle<wbr>Right</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-private"><a href="_functions_.html#cross" class="tsd-kind-icon">cross</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-private"><a href="_functions_.html#lerprot" class="tsd-kind-icon">lerp<wbr>Rot</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-private"><a href="_functions_.html#rotate" class="tsd-kind-icon">rotate</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-private"><a href="_functions_.html#rotate180" class="tsd-kind-icon">rotate180</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-private"><a href="_functions_.html#rotate270" class="tsd-kind-icon">rotate270</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-private"><a href="_functions_.html#rotate90" class="tsd-kind-icon">rotate90</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-private"><a href="_functions_.html#signedangle" class="tsd-kind-icon">signed<wbr>Angle</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_functions_.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_functions_.html#transpose" class="tsd-kind-icon">transpose</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-					<a name="angleright" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> angle<wbr>Right</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">angle<wbr>Right<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">VectorLike</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="tostring" class="tsd-anchor"></a>
+					<h3>to<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span>matrix<span class="tsd-signature-symbol">: </span><a href="../classes/_index_.matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/equinor/videx-vector2/blob/16b02cd/src/functions.ts#L81">functions.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/equinor/videx-matrix/blob/68e0700/src/functions.ts#L27">functions.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Find angle (in radians) between vector and right vector, [1, 0].</p>
+									<p>Generates a formatted string from a given matrix.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>v: <span class="tsd-signature-type">VectorLike</span></h5>
+									<h5>matrix: <a href="../classes/_index_.matrix.html" class="tsd-signature-type">Matrix</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Target vector</p>
+										<p>Matrix to generate string from</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>Angle in radians</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Formatted matrix string</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-					<a name="cross" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> cross</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">cross<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">VectorLike</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">VectorLike</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="transpose" class="tsd-anchor"></a>
+					<h3>transpose</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">transpose<span class="tsd-signature-symbol">(</span>matrix<span class="tsd-signature-symbol">: </span><a href="../classes/_index_.matrix.html" class="tsd-signature-type">Matrix</a>, target<span class="tsd-signature-symbol">: </span><a href="../classes/_index_.matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_index_.matrix.html" class="tsd-signature-type">Matrix</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/equinor/videx-vector2/blob/16b02cd/src/functions.ts#L71">functions.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/equinor/videx-matrix/blob/68e0700/src/functions.ts#L9">functions.ts:9</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Find the cross product between two 2d vectors.</p>
+									<p>Transpose a matrix.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>a: <span class="tsd-signature-type">VectorLike</span></h5>
+									<h5>matrix: <a href="../classes/_index_.matrix.html" class="tsd-signature-type">Matrix</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Left operand</p>
+										<p>Matrix to transpose</p>
 									</div>
 								</li>
 								<li>
-									<h5>b: <span class="tsd-signature-type">VectorLike</span></h5>
+									<h5>target: <a href="../classes/_index_.matrix.html" class="tsd-signature-type">Matrix</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Right operand</p>
+										<p>Target for storing results</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>Signed area of the parallellogram defined by v1 and v2</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-					<a name="lerprot" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> lerp<wbr>Rot</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">lerp<wbr>Rot<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, n<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, target<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/equinor/videx-vector2/blob/16b02cd/src/functions.ts#L113">functions.ts:113</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Rotates a vector, v1, towards a second vector, v2, based on a factor, n.
-										An n-value of 0.5, will return a vector with rotation in between
-									v1 and v2.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <span class="tsd-signature-type">any</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Vector to interpolate from</p>
-									</div>
-								</li>
-								<li>
-									<h5>b: <span class="tsd-signature-type">any</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Vector to interpolate to</p>
-									</div>
-								</li>
-								<li>
-									<h5>n: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Value between 0 - 1 used for interpolation</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> target: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;a</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Target for storing the results (Default: a)</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h4>
-							<p>Interpolated vector</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-					<a name="rotate" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> rotate</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">rotate<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a>, rad<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, target<span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/equinor/videx-vector2/blob/16b02cd/src/functions.ts#L14">functions.ts:14</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Rotate vector by a given amount of radians.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>v: <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Vector to rotate</p>
-									</div>
-								</li>
-								<li>
-									<h5>rad: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Angle in radians</p>
-									</div>
-								</li>
-								<li>
-									<h5>target: <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Target for storing the results</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h4>
-							<p>Rotated vector</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-					<a name="rotate180" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> rotate180</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">rotate180<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a>, target<span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/equinor/videx-vector2/blob/16b02cd/src/functions.ts#L44">functions.ts:44</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flip/Rotate vector by 180 degrees.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>v: <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Vector to rotate</p>
-									</div>
-								</li>
-								<li>
-									<h5>target: <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Target for storing the results</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h4>
-							<p>Flipped/rotated vector</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-					<a name="rotate270" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> rotate270</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">rotate270<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a>, target<span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/equinor/videx-vector2/blob/16b02cd/src/functions.ts#L57">functions.ts:57</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Rotate vector by 270 degrees. (Counter-clockwise)</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>v: <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Vector to rotate</p>
-									</div>
-								</li>
-								<li>
-									<h5>target: <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Target for storing the results</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h4>
-							<p>Rotated vector</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-					<a name="rotate90" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> rotate90</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">rotate90<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a>, target<span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/equinor/videx-vector2/blob/16b02cd/src/functions.ts#L30">functions.ts:30</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Rotate vector by 90 degrees. (Counter-clockwise)</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>v: <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Vector to rotate</p>
-									</div>
-								</li>
-								<li>
-									<h5>target: <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Target for storing the results</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_index_.vector2.html" class="tsd-signature-type">Vector2</a></h4>
-							<p>Rotated vector</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-					<a name="signedangle" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> signed<wbr>Angle</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">signed<wbr>Angle<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">VectorLike</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">VectorLike</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/equinor/videx-vector2/blob/16b02cd/src/functions.ts#L92">functions.ts:92</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Calculates the signed angle between two vectors.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <span class="tsd-signature-type">VectorLike</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>First vector</p>
-									</div>
-								</li>
-								<li>
-									<h5>b: <span class="tsd-signature-type">VectorLike</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Second vector</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>Signed angle between vectors</p>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/_index_.matrix.html" class="tsd-signature-type">Matrix</a></h4>
+							<p>Transposed matrix</p>
 						</li>
 					</ul>
 				</section>
@@ -414,42 +160,21 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_const_.html">"const"</a>
-					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_functions_.html">"functions"</a>
+						<a href="_functions_.html">&quot;functions&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_index_.html">"index"</a>
+						<a href="_index_.html">&quot;index&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<a href="_functions_.html#angleright" class="tsd-kind-icon">angle<wbr>Right</a>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_functions_.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<a href="_functions_.html#cross" class="tsd-kind-icon">cross</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<a href="_functions_.html#lerprot" class="tsd-kind-icon">lerp<wbr>Rot</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<a href="_functions_.html#rotate" class="tsd-kind-icon">rotate</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<a href="_functions_.html#rotate180" class="tsd-kind-icon">rotate180</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<a href="_functions_.html#rotate270" class="tsd-kind-icon">rotate270</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<a href="_functions_.html#rotate90" class="tsd-kind-icon">rotate90</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private">
-						<a href="_functions_.html#signedangle" class="tsd-kind-icon">signed<wbr>Angle</a>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_functions_.html#transpose" class="tsd-kind-icon">transpose</a>
 					</li>
 				</ul>
 			</nav>

@@ -1,5 +1,11 @@
 import Matrix from './index';
 
+/**
+ * Transpose a matrix.
+ * @param matrix Matrix to transpose
+ * @param target Target for storing results
+ * @returns Transposed matrix
+ */
 export function transpose(matrix: Matrix, target: Matrix): Matrix {
   target.rows = matrix.columns;
   target.columns = matrix.rows;

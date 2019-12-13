@@ -30,21 +30,41 @@ export default class Matrix {
    */
   columns: number = 0;
 
+  /**
+   * Constructs a matrix with given values along a single row.
+   * @param arr Collection of values
+   */
   constructor(arr: number[])
 
+  /**
+   * Constructs a matrix with given values, rows and columns.
+   * @param arr Collection of values
+   * @param rows Amount of rows in matrix
+   * @param columns Amount of columns in matrix
+   */
   constructor(arr: number[], rows: number, columns: number)
 
-  constructor(length: number, rows: number, columns: number)
+  /**
+   * Constructs a matrix with specified dimensions, but no values.
+   * @param rows Amount of rows in matrix
+   * @param columns Amount of columns in matrix
+   */
+  constructor(rows: number, columns: number)
 
+  /**
+   * Constructs a matrix with given values. Each sub-array is assigned a single row.
+   * @param arr2D Collection of values as 2D array
+   */
   constructor(arr2D: number[][])
 
   constructor(a: number | number[] | number[][], rows?: number, columns?: number) {
     // Create empty matrix with pre-assigned length
     if (typeof a === 'number') {
-      if (!rows || !columns) throw 'Error: Rows or columns not defined.';
-      this.data = new Array(a);
-      this.rows = rows;
-      this.columns = columns;
+      if (!rows) throw 'Error: Columns not defined.';
+      const length = a * rows;
+      this.data = new Array(length);
+      this.rows = a;
+      this.columns = rows;
       return;
     }
 
@@ -141,8 +161,62 @@ export default class Matrix {
     );
   }
 
+  /**
+   * Transpose the matrix.
+   * @returns Transposed matrix
+   */
   transpose(): Matrix {
-    return transpose(this, new Matrix(this.data.length, this.rows, this.columns));
+    return transpose(this, new Matrix(this.rows, this.columns));
+  }
+
+  rref(): any {
+    let lead: number = 0;
+    const rowCount = this.rows;
+    const columnCount = this.columns;
+    for (let r = 0; r < rowCount; r++) {
+      if (columnCount <= lead) {
+        break;
+      }
+      let i = r;
+      while (this.get(i, lead) === 0) {
+        i++;
+        if (rowCount === i) {
+          i = r;
+          lead++;
+          if (columnCount === lead) {
+            break;
+          }
+        }
+      }
+
+    }
+
+    /*
+    for 0 ≤ r < rowCount do
+        if columnCount ≤ lead then
+            stop
+        end if
+        i = r
+        while M[i, lead] = 0 do
+            i = i + 1
+            if rowCount = i then
+                i = r
+                lead = lead + 1
+                if columnCount = lead then
+                    stop
+                end if
+            end if
+        end while
+        Swap rows i and r
+        If M[r, lead] is not 0 divide row r by M[r, lead]
+        for 0 ≤ i < rowCount do
+            if i ≠ r do
+                Subtract M[i, lead] multiplied by row r from row i
+            end if
+        end for
+        lead = lead + 1
+    end for
+    */
   }
 
   /**
@@ -151,7 +225,7 @@ export default class Matrix {
    * @returns Row at index
    */
   row(index: number): number[] {
-    if (index < 0 || index >= this.rows) throw 'Row does not exist.'
+    if (index < 0 || index >= this.rows) throw 'Row does not exist.';
     const output: number[] = [];
     for (let c = 0; c < this.columns; c++) {
       output.push(this.get(index, c));
@@ -165,10 +239,50 @@ export default class Matrix {
    * @returns Column at index
    */
   column(index: number): number[] {
-    if (index < 0 || index >= this.columns) throw 'Row does not exist.'
+    if (index < 0 || index >= this.columns) throw 'Row does not exist.';
     const output: number[] = [];
     for (let r = 0; r < this.rows; r++) {
       output.push(this.get(r, index));
+    }
+    return output;
+  }
+
+  /**
+   * Swap two rows within the matrix.
+   * @param index1 Index of first row
+   * @param index2 Index of second row
+   * @returns Matrix with swapped rows
+   */
+  swapRows(index1: number, index2: number): Matrix {
+    if (index1 < 0 || index1 >= this.rows || index2 < 0 || index2 >= this.rows) throw 'Row does not exist.';
+    const output: Matrix = this.clone();
+    let v1: number;
+    let v2: number;
+    for (let c: number = 0; c < this.columns; c++) {
+      v1 = this.get(index1, c);
+      v2 = this.get(index2, c);
+      output.set(index1, c, v2);
+      output.set(index2, c, v1);
+    }
+    return output;
+  }
+
+  /**
+   * Swap two columns within the matrix.
+   * @param index1 Index of first column
+   * @param index2 Index of second column
+   * @returns Matrix with swapped columns
+   */
+  swapColumns(index1: number, index2: number): Matrix {
+    if (index1 < 0 || index1 >= this.columns || index2 < 0 || index2 >= this.columns) throw 'Row does not exist.';
+    const output: Matrix = this.clone();
+    let v1: number;
+    let v2: number;
+    for (let r: number = 0; r < this.rows; r++) {
+      v1 = this.get(r, index1);
+      v2 = this.get(r, index2);
+      output.set(r, index1, v2);
+      output.set(r, index2, v1);
     }
     return output;
   }
@@ -205,8 +319,18 @@ export default class Matrix {
     return new Matrix(data, a, b);
   }
 
+  /**
+   * Creates a new matrix with provided values along diagonal.
+   * @param arr Collection of values
+   * @returns Matrix with provided diagonal
+   */
   static diag(arr: number[]): Matrix;
 
+  /**
+   * Creates a new matrix with provided values along diagonal.
+   * @param val Collection of values
+   * @returns Matrix with provided diagonal
+   */
   static diag(...val: number[]): Matrix;
 
   static diag(a: number | number[], ...arr: number[]): Matrix {
