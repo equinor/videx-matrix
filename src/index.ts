@@ -248,6 +248,84 @@ export default class Matrix {
   }
 
   /**
+   * Modifies a row based on given function.
+   * @param index Index of row to modify
+   * @param modifier Modifier function
+   * @returns Modified matrix
+   */
+  modifyRow(index: number, modifier: (val: number) => number): Matrix
+
+  /**
+   * Modifies a row based on given function. Also sends values from a secondary row to modifier function.
+   * @param index Index of row to modify
+   * @param index2 Index of secondary row
+   * @param modifier Modifier function
+   * @returns Modified matrix
+   */
+  modifyRow(index: number, index2: number, modifier: (val: number, val2: number) => number): Matrix
+
+  modifyRow(row: number, b: ((val: number) => number) | number, c?: (val: number, val2: number) => number): Matrix {
+    if (row < 0 || row >= this.rows || row < 0 || row >= this.rows) throw 'Row does not exist.';
+
+    const output: Matrix = this.clone();
+
+    if (typeof b === 'number') {
+      if (b < 0 || b >= this.rows || b < 0 || b >= this.rows) throw 'Row does not exist.';
+      for (let col: number = 0; col < this.columns; col++) {
+        const val1: number = this.get(row, col);
+        const val2: number = this.get(b, col);
+        output.set(row, col, c(val1, val2));
+      }
+    } else {
+      for (let col: number = 0; col < this.columns; col++) {
+        const val: number = this.get(row, col);
+        output.set(row, col, b(val));
+      }
+    }
+
+    return output;
+  }
+
+  /**
+   * Modifies a column based on given function.
+   * @param index Index of column to modify
+   * @param modifier Modifier function
+   * @returns Modified matrix
+   */
+  modifyColumn(index: number, modifier: (val: number) => number): Matrix
+
+  /**
+   * Modifies a column based on given function. Also sends values from a secondary column to modifier function.
+   * @param index Index of column to modify
+   * @param index2 Index of secondary column
+   * @param modifier Modifier function
+   * @returns Modified matrix
+   */
+  modifyColumn(index: number, index2: number, modifier: (val: number, val2: number) => number): Matrix
+
+  modifyColumn(col: number, b: ((val: number) => number) | number, c?: (val: number, val2: number) => number): Matrix {
+    if (col < 0 || col >= this.columns || col < 0 || col >= this.columns) throw 'Column does not exist.';
+
+    const output: Matrix = this.clone();
+
+    if (typeof b === 'number') {
+      if (b < 0 || b >= this.columns || b < 0 || b >= this.columns) throw 'Row does not exist.';
+      for (let row: number = 0; row < this.rows; row++) {
+        const val1: number = this.get(row, col);
+        const val2: number = this.get(row, b);
+        output.set(row, col, c(val1, val2));
+      }
+    } else {
+      for (let row: number = 0; row < this.rows; row++) {
+        const val: number = this.get(row, col);
+        output.set(row, col, b(val));
+      }
+    }
+
+    return output;
+  }
+
+  /**
    * Swap two rows within the matrix.
    * @param index1 Index of first row
    * @param index2 Index of second row
