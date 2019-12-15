@@ -169,6 +169,10 @@ export default class Matrix {
     return transpose(this, new Matrix(this.rows, this.columns));
   }
 
+  /**
+   * Row reduced echelon function
+   * WIP
+   */
   rref(): any {
     let lead: number = 0;
     const rowCount = this.rows;
