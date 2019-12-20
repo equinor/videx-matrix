@@ -1,6 +1,10 @@
 
 import {
   transpose,
+  modifyRow,
+  modifyRow2,
+  swapRows,
+  swapColumns,
   toString,
 } from './functions';
 
@@ -29,6 +33,11 @@ export default class Matrix {
    * Amount of columns in matrix.
    */
   columns: number = 0;
+
+  /**
+   * Does the matrix mutate?
+   */
+  isMutating: boolean = false;
 
   /**
    * Constructs a matrix with given values along a single row.
@@ -111,6 +120,24 @@ export default class Matrix {
   }
 
   /**
+   * Set mutable and return reference to self.
+   * @returns Reference to self
+   */
+  get mutable(): Matrix {
+    this.isMutating = true;
+    return this;
+  }
+
+  /**
+   * Set immutable and return reference to self.
+   * @returns Reference to self
+   */
+  get immutable(): Matrix {
+    this.isMutating = false;
+    return this;
+  }
+
+  /**
    * Set value in matrix at given position
    * @param row Target row
    * @param column Target column
@@ -173,16 +200,19 @@ export default class Matrix {
    * Row reduced echelon function
    * WIP
    */
-  rref(): any {
+  rref(): Matrix {
+
+    let output: Matrix = this.clone().mutable;
+
     let lead: number = 0;
-    const rowCount = this.rows;
-    const columnCount = this.columns;
+    const rowCount = output.rows;
+    const columnCount = output.columns;
     for (let r = 0; r < rowCount; r++) {
       if (columnCount <= lead) {
         break;
       }
       let i = r;
-      while (this.get(i, lead) === 0) {
+      while (output.get(i, lead) === 0) {
         i++;
         if (rowCount === i) {
           i = r;
@@ -192,35 +222,16 @@ export default class Matrix {
           }
         }
       }
-
+      output.swapRows(i, r);
+      const val = output.get(r, lead);
+      if (val !== 0) output.modifyRow(r, d => d / val);
+      for (let i = 0; i < rowCount; i++) {
+        const val2 = output.get(i, lead);
+        if (i !== r) output.modifyRow(i, r, (d, d2) => d - val2 * d2);
+      }
+      lead++;
     }
-
-    /*
-    for 0 ≤ r < rowCount do
-        if columnCount ≤ lead then
-            stop
-        end if
-        i = r
-        while M[i, lead] = 0 do
-            i = i + 1
-            if rowCount = i then
-                i = r
-                lead = lead + 1
-                if columnCount = lead then
-                    stop
-                end if
-            end if
-        end while
-        Swap rows i and r
-        If M[r, lead] is not 0 divide row r by M[r, lead]
-        for 0 ≤ i < rowCount do
-            if i ≠ r do
-                Subtract M[i, lead] multiplied by row r from row i
-            end if
-        end for
-        lead = lead + 1
-    end for
-    */
+    return output.immutable;
   }
 
   /**
@@ -269,25 +280,8 @@ export default class Matrix {
   modifyRow(index: number, index2: number, modifier: (val: number, val2: number) => number): Matrix
 
   modifyRow(row: number, b: ((val: number) => number) | number, c?: (val: number, val2: number) => number): Matrix {
-    if (row < 0 || row >= this.rows || row < 0 || row >= this.rows) throw 'Row does not exist.';
-
-    const output: Matrix = this.clone();
-
-    if (typeof b === 'number') {
-      if (b < 0 || b >= this.rows || b < 0 || b >= this.rows) throw 'Row does not exist.';
-      for (let col: number = 0; col < this.columns; col++) {
-        const val1: number = this.get(row, col);
-        const val2: number = this.get(b, col);
-        output.set(row, col, c(val1, val2));
-      }
-    } else {
-      for (let col: number = 0; col < this.columns; col++) {
-        const val: number = this.get(row, col);
-        output.set(row, col, b(val));
-      }
-    }
-
-    return output;
+    if (typeof b === 'function') return modifyRow(this, row, b, this.isMutating ? this : this.clone());
+    return modifyRow2(this, row, b, c, this.isMutating ? this : this.clone());
   }
 
   /**
@@ -336,17 +330,7 @@ export default class Matrix {
    * @returns Matrix with swapped rows
    */
   swapRows(index1: number, index2: number): Matrix {
-    if (index1 < 0 || index1 >= this.rows || index2 < 0 || index2 >= this.rows) throw 'Row does not exist.';
-    const output: Matrix = this.clone();
-    let v1: number;
-    let v2: number;
-    for (let c: number = 0; c < this.columns; c++) {
-      v1 = this.get(index1, c);
-      v2 = this.get(index2, c);
-      output.set(index1, c, v2);
-      output.set(index2, c, v1);
-    }
-    return output;
+    return swapRows(this, index1, index2, this.isMutating ? this : this.clone());
   }
 
   /**
@@ -356,17 +340,7 @@ export default class Matrix {
    * @returns Matrix with swapped columns
    */
   swapColumns(index1: number, index2: number): Matrix {
-    if (index1 < 0 || index1 >= this.columns || index2 < 0 || index2 >= this.columns) throw 'Row does not exist.';
-    const output: Matrix = this.clone();
-    let v1: number;
-    let v2: number;
-    for (let r: number = 0; r < this.rows; r++) {
-      v1 = this.get(r, index1);
-      v2 = this.get(r, index2);
-      output.set(r, index1, v2);
-      output.set(r, index2, v1);
-    }
-    return output;
+    return swapColumns(this, index1, index2, this.isMutating ? this : this.clone());
   }
 
   /**

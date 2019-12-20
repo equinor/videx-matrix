@@ -79,6 +79,11 @@ describe('Vector2.js', () => {
     expect(g.equal(g)).toBeTruthy();
   });
 
+  it('rref', () => {
+    const a = new Matrix([[1, 2, -1, -4], [2, 3, -1, -11], [-2, 0, -3, 22]]);
+    console.log(a.rref().toString());
+  });
+
   it('row', () => {
     const a = Matrix.identity(3);
     expect(a.row(1)).toStrictEqual([0, 1, 0]);
@@ -103,6 +108,16 @@ describe('Vector2.js', () => {
     const c = new Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]).modifyRow(0, 1, (a, b) => a + b);
     const d = new Matrix([[5, 7, 9], [4, 5, 6], [7, 8, 9]]);
     expect(c.equal(d)).toBeTruthy();
+
+    // Mutable
+    const e = new Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+    e.mutable.modifyRow(1, d => d * 2);
+    expect(e.equal(b)).toBeTruthy();
+
+    // Mutable
+    const f = new Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+    f.mutable.modifyRow(0, 1, (a, b) => a + b);
+    expect(f.equal(d)).toBeTruthy();
   });
 
   it('modifyColumn', () => {
@@ -123,6 +138,11 @@ describe('Vector2.js', () => {
     const c = new Matrix([[1, 2], [3, 4], [5, 6], [7, 8]]).swapRows(1, 2);
     const d = new Matrix([[1, 2], [5, 6], [3, 4], [7, 8]]);
     expect(c.equal(d)).toBeTruthy();
+
+    // Mutable
+    const e = new Matrix([[1, 2], [3, 4], [5, 6], [7, 8]]);
+    e.mutable.swapRows(1, 2);
+    expect(e.equal(d)).toBeTruthy();
   });
 
   it('swapColumns', () => {
@@ -133,6 +153,11 @@ describe('Vector2.js', () => {
     const c = new Matrix([[1, 2], [3, 4], [5, 6], [7, 8]]).swapColumns(0, 1);
     const d = new Matrix([[2, 1], [4, 3], [6, 5], [8, 7]]);
     expect(c.equal(d)).toBeTruthy();
+
+    // Mutable
+    const e = new Matrix([[1, 2], [3, 4], [5, 6], [7, 8]]);
+    e.mutable.swapColumns(0, 1);
+    expect(e.equal(d)).toBeTruthy();
   });
 
   it('equal', () => {
