@@ -80,8 +80,17 @@ describe('Vector2.js', () => {
   });
 
   it('rref', () => {
-    const a = new Matrix([[1, 2, -1, -4], [2, 3, -1, -11], [-2, 0, -3, 22]]);
-    console.log(a.rref().toString());
+    const a = new Matrix([
+      [ 1, -1, -2,  4 ],
+      [ 2, -1, -1,  2 ],
+      [ 2,  1,  4, 16 ],
+    ]);
+    const b = new Matrix([
+      [ 1, 2, 3, 1, 0, 0 ],
+      [ 2, 4, 5, 0, 1, 0 ],
+      [ 3, 5, 6, 0, 0, 1 ],
+    ]);
+    console.log(b.rref().toString());
   });
 
   it('row', () => {

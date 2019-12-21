@@ -106,10 +106,14 @@ export function toString(matrix: Matrix): string {
 
   // Get greatest power of number
   let maxPower: number = -Infinity;
+  let negative: boolean = false; // Any negative numbers?
   matrix.data.forEach(d => {
-    const power = d ? Math.floor(Math.log10(d)) : 0;
+    if (d < 0) negative = true;
+    const power = d ? Math.floor(Math.log10(Math.abs(d))) : 0;
     if (power > maxPower) maxPower = power;
   });
+
+  if (negative) maxPower++;
 
   // Build grid of matrix
   const finalRow = matrix.rows - 1;
@@ -118,8 +122,10 @@ export function toString(matrix: Matrix): string {
     output += prev.toString();
     for (let col: number = 1; col < matrix.columns; col++) {
       const cur = matrix.data[idx++];
-      const power = prev ? Math.floor(Math.log10(prev)) : 0;
-      for (let i = maxPower - power; i >= 0; i--) output += ' ';
+      const power = prev ? Math.floor(Math.log10(Math.abs(prev))) : 0;
+      const negPadding = (negative && cur < 0) ? -1 : 0;
+
+      for (let i = maxPower - power + negPadding; i >= 0; i--) output += ' ';
       output += cur;
       prev = cur;
     }

@@ -197,17 +197,47 @@ export default class Matrix {
   }
 
   /**
-   * Row reduced echelon function
-   * WIP
+   * Row reduction of matrix. (Used to find determinant)
+   */
+  rowReduce(): Matrix {
+    let output: Matrix = this.clone();
+    const rowCount = output.rows;
+    const columnCount = output.columns;
+
+    const iterations = Math.min(rowCount, columnCount);
+
+    for (let c = 0; c < iterations; c++) {
+      let val = output.get(c, c);
+      if (val === 0) { // If lead is zero
+        let success = false;
+        for (let r = c; r < rowCount; r++) {
+          val = output.get(r, c);
+          if (val > 0) {
+            swapRows(output, c, r, output);
+            success = true;
+            break;
+          }
+        }
+        // If no row
+        if(!success) continue;
+      }
+    }
+
+    return output;
+  }
+
+  /**
+   * Performs row reduced echelon function on matrix
+   * @returns Reduced matrix
    */
   rref(): Matrix {
-
-    let output: Matrix = this.clone().mutable;
+    let output: Matrix = this.clone();
 
     let lead: number = 0;
     const rowCount = output.rows;
     const columnCount = output.columns;
-    for (let r = 0; r < rowCount; r++) {
+
+    outer: for (let r = 0; r < rowCount; r++) {
       if (columnCount <= lead) {
         break;
       }
@@ -218,20 +248,22 @@ export default class Matrix {
           i = r;
           lead++;
           if (columnCount === lead) {
-            break;
+            break outer;
           }
         }
       }
-      output.swapRows(i, r);
+      swapRows(output, i, r, output);
       const val = output.get(r, lead);
-      if (val !== 0) output.modifyRow(r, d => d / val);
+      if (val !== 0) modifyRow(output, r,  d => d / val, output);
       for (let i = 0; i < rowCount; i++) {
+        if (i === r) continue;
         const val2 = output.get(i, lead);
-        if (i !== r) output.modifyRow(i, r, (d, d2) => d - val2 * d2);
+        modifyRow2(output, i, r, (d, d2) => d - val2 * d2, output);
       }
       lead++;
     }
-    return output.immutable;
+
+    return output;
   }
 
   /**
